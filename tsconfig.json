@@ -12,7 +12,11 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": ["es2018", "dom"]
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@pages/tabs": ["src/app/pages/tabs"],
+      "@pages/sign-in": ["src/app/pages/sign-in"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
