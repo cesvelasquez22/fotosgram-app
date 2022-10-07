@@ -1,18 +1,17 @@
-export interface Post {
+export interface PostResponse {
   ok: boolean;
   page: number;
   results: number;
-  posts: PostElement[];
+  posts: Post[];
 }
 
-export interface PostElement {
+export interface Post {
   _id: string;
   message: string;
   imgs: string[];
   coords: string;
   user: User;
   created: string;
-  img?: string[];
 }
 
 export interface User {
