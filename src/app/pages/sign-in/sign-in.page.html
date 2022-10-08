@@ -1,5 +1,5 @@
 <ion-content>
-  <swiper class="mainSlide">
+  <swiper class="mainSlide" [config]="mainSlideOpts" (swiper)="setSwiperInstance($event)">
     <ng-template swiperSlide>
       <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
         <ion-grid fixed>
@@ -112,6 +112,7 @@
           size="small"
           fill="outline"
           color="tertiary"
+          (click)="onSlidePrev()"
         >
           Ingresar
         </ion-button>
@@ -124,6 +125,7 @@
           size="small"
           fill="outline"
           color="tertiary"
+          (click)="onSlideNext()"
         >
           Registrarme
         </ion-button>

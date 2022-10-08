@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AvatarSlide } from '@fotosgram/types';
+import Swiper from 'swiper';
+import { SwiperComponent } from 'swiper/angular';
 
 @Component({
   selector: 'app-sign-in',
@@ -43,13 +45,23 @@ export class SignInPage implements OnInit {
     },
   ];
 
+  mainSlideOpts = {
+    allowTouchMove: false,
+  };
+
   avatarSlideOpts = {
     slidesPerView: 3.5,
   };
 
+  private mainSlides: Swiper;
+
   constructor() {}
 
   ngOnInit() {}
+
+  setSwiperInstance(swiper: Swiper) {
+    this.mainSlides = swiper;
+  }
 
   selectAvatar(avatar: AvatarSlide) {
     this.avatars.forEach((av) => (av.selected = false));
@@ -61,4 +73,12 @@ export class SignInPage implements OnInit {
   }
 
   onRegister(form: NgForm) {}
+
+  onSlideNext() {
+    this.mainSlides.slideNext();
+  }
+
+  onSlidePrev() {
+    this.mainSlides.slidePrev();
+  }
 }
