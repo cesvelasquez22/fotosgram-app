@@ -8,12 +8,15 @@ import { SignInPageRoutingModule } from './sign-in-routing.module';
 
 import { SignInPage } from './sign-in.page';
 
+import { SwiperModule } from 'swiper/angular';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SignInPageRoutingModule
+    SignInPageRoutingModule,
+    SwiperModule,
   ],
   declarations: [SignInPage]
 })
