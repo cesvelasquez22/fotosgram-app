@@ -10,9 +10,9 @@
   </ion-item>
 
   <ion-slides pager="true">
-    <ion-slide *ngFor="let item of [1,1,1]; index as i">
-      <img src="assets/perro-{{i + 1}}.jpg" alt="post-img">
-    </ion-slide>
+    <ion-slide class="image-slide" [style]="img1 | domSanitizer"></ion-slide>
+    <ion-slide class="image-slide" [style]="img2 | domSanitizer"></ion-slide>
+    <ion-slide class="image-slide" [style]="img3 | domSanitizer"></ion-slide>
   </ion-slides>
 
   <ion-item lines="none">

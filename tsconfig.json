@@ -17,6 +17,7 @@
       "@fotosgram/components": ["src/app/components"],
       "@fotosgram/types": ["src/app/types"],
       "@fotosgram/services": ["src/app/services"],
+      "@fotosgram/pipes": ["src/app/pipes"],
       "@pages/tabs": ["src/app/pages/tabs"],
       "@pages/sign-in": ["src/app/pages/sign-in"],
     }
