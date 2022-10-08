@@ -9,6 +9,7 @@ import { Post } from '@fotosgram/types';
 })
 export class Tab1Page implements OnInit {
   posts: Post[] = [];
+  disableInfiniteScroll = false;
 
   constructor(private postsService: PostsService) {}
 
@@ -18,14 +19,20 @@ export class Tab1Page implements OnInit {
 
   onClick() {}
 
-  loadPosts(event: any = null) {
-    this.postsService.getPosts().subscribe(({ posts, results }) => {
+  doRefresh(event: any) {
+    this.posts = [];
+    this.disableInfiniteScroll = false;
+    this.loadPosts(event, true);
+  }
+
+  loadPosts(event: any = null, pull: boolean = false) {
+    this.postsService.getPosts(pull).subscribe(({ posts, results }) => {
       this.posts.push(...posts);
       if (event) {
         event.target.complete();
       }
       if (results === 0) {
-        event.target.disabled = true;
+        this.disableInfiniteScroll = true;
       }
     });
   }

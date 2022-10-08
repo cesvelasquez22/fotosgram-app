@@ -12,9 +12,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <app-posts [posts]="posts"></app-posts>
 
-  <ion-infinite-scroll threshold="25%" position="bottom" (ionInfinite)="loadPosts($event)">
+  <ion-infinite-scroll [disabled]="disableInfiniteScroll" threshold="25%" position="bottom" (ionInfinite)="loadPosts($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
