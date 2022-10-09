@@ -71,6 +71,7 @@ export class SignInPage implements OnInit {
       Validators.required,
       Validators.minLength(6),
     ]),
+    avatar: new FormControl('av-1.png'),
   });
 
   private mainSlides: Swiper;
@@ -90,6 +91,7 @@ export class SignInPage implements OnInit {
   selectAvatar(avatar: AvatarSlide) {
     this.avatars.forEach((av) => (av.selected = false));
     avatar.selected = true;
+    this.signUpForm.get('avatar').setValue(avatar.img);
   }
 
   onSignIn() {
@@ -109,7 +111,20 @@ export class SignInPage implements OnInit {
   }
 
   onSignUp() {
-    console.log(this.signUpForm.value);
+    console.log(this.signUpForm.getRawValue());
+    this.usersService.signUp(this.signUpForm.getRawValue()).subscribe(
+      () => {
+        console.log('Signed up!');
+        this.navController.navigateRoot('/tabs/tab1', { animated: true });
+      },
+      (err) => {
+        this.toastService.presentToast(
+          err.error.message,
+          'close-circle-outline',
+          'error',
+        );
+      }
+    );
   }
 
   onSlideNext() {

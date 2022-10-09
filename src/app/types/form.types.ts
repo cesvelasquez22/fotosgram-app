@@ -7,4 +7,5 @@ export interface SignInForm {
 
 export interface SignUpForm extends SignInForm {
   name: FormControl<string>;
+  avatar: FormControl<string>;
 }

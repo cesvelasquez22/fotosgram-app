@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SignInResponse } from '@fotosgram/types';
+import { Credentials, TokenResponse } from '@fotosgram/types';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { StorageService } from './storage.service';
@@ -17,11 +17,30 @@ export class UsersService {
     return this.storage.get('token');
   }
 
-  signIn({ email, password }: { email: string; password: string }) {
+  signIn({ email, password }: Partial<Credentials>) {
     return this.http
-      .post<SignInResponse>(`${environment.apiUrl}/users/login`, {
+      .post<TokenResponse>(`${environment.apiUrl}/users/login`, {
         email,
         password,
+      })
+      .pipe(
+        catchError((error) => {
+          this.storage.remove('token');
+          throw error;
+        }),
+        tap(({ token }) => {
+          this.storage.set('token', token);
+        })
+      );
+  }
+
+  signUp({ email, password, name, avatar }: Partial<Credentials>) {
+    return this.http
+      .post<TokenResponse>(`${environment.apiUrl}/users`, {
+        email,
+        password,
+        name,
+        avatar,
       })
       .pipe(
         catchError((error) => {
