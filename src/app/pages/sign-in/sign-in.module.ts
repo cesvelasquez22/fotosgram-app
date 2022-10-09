@@ -9,6 +9,7 @@ import { SignInPageRoutingModule } from './sign-in-routing.module';
 import { SignInPage } from './sign-in.page';
 
 import { SwiperModule } from 'swiper/angular';
+import { ComponentsModule } from '@fotosgram/components';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { SwiperModule } from 'swiper/angular';
     IonicModule,
     SignInPageRoutingModule,
     SwiperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentsModule
   ],
   declarations: [SignInPage]
 })

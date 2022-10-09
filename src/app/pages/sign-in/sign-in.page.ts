@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '@fotosgram/services';
-import { AvatarSlide, SignInForm, SignUpForm } from '@fotosgram/types';
-import { NavController, ToastController } from '@ionic/angular';
+import { SignInForm, SignUpForm } from '@fotosgram/types';
+import { NavController } from '@ionic/angular';
 import { ToastService } from 'src/app/services/toast.service';
 import Swiper from 'swiper';
 
@@ -12,47 +12,9 @@ import Swiper from 'swiper';
   styleUrls: ['./sign-in.page.scss'],
 })
 export class SignInPage implements OnInit {
-  avatars: AvatarSlide[] = [
-    {
-      img: 'av-1.png',
-      selected: true,
-    },
-    {
-      img: 'av-2.png',
-      selected: false,
-    },
-    {
-      img: 'av-3.png',
-      selected: false,
-    },
-    {
-      img: 'av-4.png',
-      selected: false,
-    },
-    {
-      img: 'av-5.png',
-      selected: false,
-    },
-    {
-      img: 'av-6.png',
-      selected: false,
-    },
-    {
-      img: 'av-7.png',
-      selected: false,
-    },
-    {
-      img: 'av-8.png',
-      selected: false,
-    },
-  ];
 
   mainSlideOpts = {
     allowTouchMove: false,
-  };
-
-  avatarSlideOpts = {
-    slidesPerView: 3.5,
   };
 
   // Auth forms
@@ -88,10 +50,8 @@ export class SignInPage implements OnInit {
     this.mainSlides = swiper;
   }
 
-  selectAvatar(avatar: AvatarSlide) {
-    this.avatars.forEach((av) => (av.selected = false));
-    avatar.selected = true;
-    this.signUpForm.get('avatar').setValue(avatar.img);
+  selectAvatar(img: string) {
+    this.signUpForm.get('avatar').setValue(img);
   }
 
   onSignIn() {

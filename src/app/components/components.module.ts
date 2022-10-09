@@ -5,10 +5,11 @@ import { PostComponent } from './post/post.component';
 import { IonicModule } from '@ionic/angular';
 import { PipesModule } from '@fotosgram/pipes';
 import { SwiperModule } from 'swiper/angular';
+import { AvatarSelectComponent } from './avatar-select/avatar-select.component';
 
 @NgModule({
-  declarations: [PostsComponent, PostComponent],
-  exports: [PostsComponent, PostComponent],
+  declarations: [PostsComponent, PostComponent, AvatarSelectComponent],
+  exports: [PostsComponent, PostComponent, AvatarSelectComponent],
   imports: [CommonModule, IonicModule, PipesModule, SwiperModule],
 })
 export class ComponentsModule {}

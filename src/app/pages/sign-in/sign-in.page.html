@@ -58,7 +58,7 @@
 
         <ion-row>
           <ion-col>
-            <swiper [config]="avatarSlideOpts">
+            <!-- <swiper [config]="avatarSlideOpts">
               <ng-template *ngFor="let avatar of avatars" swiperSlide>
                 <ion-img
                   class="pick-avatar"
@@ -67,7 +67,8 @@
                   (click)="selectAvatar(avatar)"
                 ></ion-img>
               </ng-template>
-            </swiper>
+            </swiper> -->
+            <app-avatar-select (avatarSelected)="selectAvatar($event)"></app-avatar-select>
           </ion-col>
         </ion-row>
 
