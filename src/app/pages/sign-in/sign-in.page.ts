@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { AvatarSlide } from '@fotosgram/types';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from '@fotosgram/services';
+import { AvatarSlide, SignInForm, SignUpForm } from '@fotosgram/types';
 import Swiper from 'swiper';
-import { SwiperComponent } from 'swiper/angular';
 
 @Component({
   selector: 'app-sign-in',
@@ -53,9 +53,27 @@ export class SignInPage implements OnInit {
     slidesPerView: 3.5,
   };
 
+  // Auth forms
+  signInForm = new FormGroup<SignInForm>({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
+  });
+
+  signUpForm = new FormGroup<SignUpForm>({
+    name: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
+  });
+
   private mainSlides: Swiper;
 
-  constructor() {}
+  constructor(private usersService: UsersService) {}
 
   ngOnInit() {}
 
@@ -68,11 +86,13 @@ export class SignInPage implements OnInit {
     avatar.selected = true;
   }
 
-  onSubmit(form: NgForm) {
-    console.log(form.value);
+  onSignIn() {
+    this.usersService.signIn(this.signInForm.getRawValue()).subscribe(console.log);
   }
 
-  onRegister(form: NgForm) {}
+  onSignUp() {
+    console.log(this.signUpForm.value);
+  }
 
   onSlideNext() {
     this.mainSlides.slideNext();
