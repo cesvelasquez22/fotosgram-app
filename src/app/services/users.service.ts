@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SignInResponse } from '@fotosgram/types';
-import { tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { StorageService } from './storage.service';
 
@@ -24,10 +24,12 @@ export class UsersService {
         password,
       })
       .pipe(
-        tap(({ ok, token }) => {
-          if (ok) {
-            this.storage.set('token', token);
-          }
+        catchError((error) => {
+          this.storage.remove('token');
+          throw error;
+        }),
+        tap(({ token }) => {
+          this.storage.set('token', token);
         })
       );
   }

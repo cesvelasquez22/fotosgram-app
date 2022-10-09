@@ -6,4 +6,5 @@ export interface AvatarSlide {
 export interface SignInResponse {
   ok:    boolean;
   token: string;
+  message?: string;
 }

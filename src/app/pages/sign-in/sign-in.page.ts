@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '@fotosgram/services';
 import { AvatarSlide, SignInForm, SignUpForm } from '@fotosgram/types';
+import { NavController, ToastController } from '@ionic/angular';
+import { ToastService } from 'src/app/services/toast.service';
 import Swiper from 'swiper';
 
 @Component({
@@ -73,7 +75,11 @@ export class SignInPage implements OnInit {
 
   private mainSlides: Swiper;
 
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private navController: NavController,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit() {}
 
@@ -87,7 +93,19 @@ export class SignInPage implements OnInit {
   }
 
   onSignIn() {
-    this.usersService.signIn(this.signInForm.getRawValue()).subscribe(console.log);
+    this.usersService.signIn(this.signInForm.getRawValue()).subscribe(
+      () => {
+        console.log('Signed in!');
+        this.navController.navigateRoot('/tabs/tab1', { animated: true });
+      },
+      (err) => {
+        this.toastService.presentToast(
+          err.error.message,
+          'close-circle-outline',
+          'error',
+        );
+      }
+    );
   }
 
   onSignUp() {
