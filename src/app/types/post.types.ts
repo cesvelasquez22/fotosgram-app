@@ -1,3 +1,5 @@
+import { User } from './user.types';
+
 export interface PostResponse {
   ok: boolean;
   page: number;
@@ -12,11 +14,4 @@ export interface Post {
   coords: string;
   user: User;
   created: string;
-}
-
-export interface User {
-  _id: string;
-  name: string;
-  email: string;
-  avatar: string;
 }

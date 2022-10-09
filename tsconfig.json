@@ -14,6 +14,7 @@
     "module": "es2020",
     "lib": ["es2018", "dom"],
     "paths": {
+      "@fotosgram/guards": ["src/app/guards"],
       "@fotosgram/components": ["src/app/components"],
       "@fotosgram/types": ["src/app/types"],
       "@fotosgram/services": ["src/app/services"],

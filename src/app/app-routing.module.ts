@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '@fotosgram/guards';
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('@pages/tabs').then((m) => m.TabsPageModule),
   },

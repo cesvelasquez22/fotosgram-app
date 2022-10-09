@@ -1,4 +1,9 @@
-import { User } from './post.types';
+export interface User {
+  _id: string;
+  name: string;
+  email: string;
+  avatar: string;
+}
 
 export interface AvatarSlide {
   img: string;
@@ -9,6 +14,7 @@ export interface TokenResponse {
   ok: boolean;
   token: string;
   message?: string;
+  user?: User;
 }
 
 export interface Credentials extends User {
